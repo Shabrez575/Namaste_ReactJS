@@ -1,0 +1,49 @@
+/* #heading{
+    color: rgb(255, 47, 0);
+} */
+.header{
+  display:flex;
+  justify-content:space-between;
+  border:1px solid black;
+}
+.logo{
+  width:100px;
+}
+
+.nav-items ul{
+  display:flex;
+}
+.nav-items ul li{
+  list-style:none;
+  padding:10px;
+  margin:5px;
+  font-size: 18px;
+}
+
+.Search-bar{
+  padding: 10px;
+}
+
+.res-Container{
+  display:flex;
+  flex-wrap:wrap;
+}
+.res-card {
+  width: 200px;
+  /* height:350px; */
+  padding:5px;
+  margin:3px;
+  background-color: #e6dac1;
+}
+.res-card:hover {
+    border:1px solid black;
+    cursor: pointer;
+}
+.res-food{
+  height:50%;
+  width:100%;
+}
+
+.card-btm{
+  margin:30px;
+}
