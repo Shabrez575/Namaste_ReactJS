@@ -1,3 +1,8 @@
 /node_modules
 /dist
 .parcel-cache
+.babel.config.js
+/src/components/__tests__
+/src/components/mocks
+/src/components/utils/mockData.js
+.jest.config.js
