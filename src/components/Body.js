@@ -90,8 +90,8 @@ const Body = () => {
 
   if(onlineStatus === false){
     return (
-      <h1 className="onlineStatus">
-        Looks Like you are offline! Please check your internet connection.
+      <h1 className="onlineStatus m-[250px] flex justify-center">
+        Looks Like you are offline! Please check your internet connection. <span className=""> 💔 </span>
       </h1>
     )
   }
