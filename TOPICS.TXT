@@ -1,0 +1,83 @@
+EPISODE - 11 (DATA IS THE NEW OIL)
+Data management is essential in React development. 
+In this episode, we explore how to handle and manipulate 
+data using state, props, and other powerful React techniques.
+
+1 - Higher Order Components
+2 - Controlled and Uncontrolled Components
+3 - Lifting the state up (Parent Controlled all their children.)
+4 - Props Drilling.
+5 - React Context. -> it will solve the problem of prop drilling.
+- We create Context inside UserContext Components.
+- For Using Context using useContext() in Functional Components.
+- For Using Context using <userContext.Consumer> component in Class Based Components.
+
+EPISODE - 12
+Building a data store is pivotal. In this episode, 
+you'll explore state management with React's Context API. 
+You'll create a centralized 
+data store for your app, making data management more efficient.
+1 - Go through Zustand
+2 - Start with Redux
+- Redux Toolkit
+- Vanilla Redux
+- In Redux we have redux store
+- In case of our cart when we write the data                  
+- When you hit the add to cart button it dispatches a action 
+  which calls the reducer function and it will update the slice 
+  of cart store.
+
+  - How to read data from the cart
+   for that we use selector(phenomenon: cart subscribe to our store).
+   and show on cart with updated data.
+
+Redux Toolkit
+- Install @reduxjs/toolkit and react-redux
+  {npm i @reduxjs/toolkit}
+
+- Build our store
+- Connect our store to our app
+- slice (cartSlice)
+- dispatch(action)
+- selector
+- reducer
+- reducers
+- mutate state
+- Immer (mutate state) - https://immerjs.github.io/immer/
+
+EPISODE - 13 (Testing)
+
+- Types of testing.
+- Unit Testing.
+- Integration Testing.
+- End to End Testing. (e2e Testing)
+
+# Setting up Testing in our app:
+
+Jest is the different js testing library and react testing library used it 
+behind the scene.
+1 - Install react testing library:
+npm i -D @testing-library/react
+
+2 - Install jest library:
+npm i -D jest
+
+3 - Install Babel dependencies and configure it:
+npm install --save-dev babel-jest @babel/core @babel/preset-env
+
+4 - Configure Parcel Config file to disable  default babel transpilation.
+To make it work -> went here (https://parceljs.org/languages/javascript/)
+and copy .parcelrc.
+
+If I have to run test cases I need have a command for that:
+
+- npm run test.
+
+5 - Writting Jest Configuration.
+- npx jest --init
+6 - Install JSDOM library as well separately from "https://testing-library.com/docs/react-testing-library/setup".
+- npm install --save-dev jest-environment-jsdom
+7 - Install @babel/preset-react - to make JSX work in the test cases
+8 - Include @babel/preset-react inside my babel Configuration
+9 - Install @testing-library/jest-dom
+(npm i -D @testing-library/jest-dom)

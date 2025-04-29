@@ -1,0 +1,231 @@
+import { useEffect, useState } from "react";
+import RestaurantCard from "./RestaurantCard";
+import Shimmer from "./shimmer";
+// import resList from "../utils/mockData";
+
+const Body = () => {
+
+    // local STATE VARIABLE IN REACT 
+    // Whenever a state variable update react will re render the 
+    // const [listOfRest,setListOfRest] = useState([{
+    //     info:{
+    //     "id": "304041",
+    //     "name": "Shagun Hotel",
+    //     "cloudinaryImageId": "by3uz0e7eszzzqlvmpmz",
+    //     "locality": "Garhpar",
+    //     "areaName": "Qamruddin Ganj",
+    //     "costForTwo": "₹300 for two",
+    //     "cuisines": [
+    //       "Sweets",
+    //       "Bakery",
+    //       "Desserts",
+    //       "Snacks",
+    //       "Indian",
+    //       "South Indian"
+    //     ],
+    //     "avgRating": 3.5,
+    //     "veg": true,
+    //     "parentId": "182632",
+    //     "avgRatingString": "3.5",
+    //     "totalRatingsString": "4.5K+"
+    //     }
+    //  },
+    //  {
+    //     info:{
+    //         "id": "304042",
+    //         "name": "Sheetal Chhaya",
+    //         "cloudinaryImageId": "by3uz0e7eszzzqlvmpmz",
+    //         "locality": "Garhpar",
+    //         "areaName": "Qamruddin Ganj",
+    //         "costForTwo": "₹300 for two",
+    //         "cuisines": [
+    //           "Sweets",
+    //           "Bakery",
+    //           "Desserts",
+    //           "Snacks",
+    //           "Indian",
+    //           "South Indian"
+    //         ],
+    //         "avgRating": 4.2,
+    //         "veg": true,
+    //         "parentId": "182632",
+    //         "avgRatingString": "4.2",
+    //         "totalRatingsString": "4.5K+"
+    //         },
+    //  }   ]);
+
+    // Using Mock Data
+    // const [listOfRest,setListOfRest] = useState(resList);
+
+    // Now Using live swiggy API.
+    // Local State Variable - super powerful variable
+    const [listOfRest,setListOfRest] = useState([]);
+
+    const [filteredRest, setfilteredRest] = useState([]);
+
+    const [searchText, setSearchText] = useState('');
+
+    // Whenever state variable update, react triggers a reconcillation cycle (re-render the component.) 
+    console.log('Body Rendered')
+    
+    // console.log(searchText);
+
+    useEffect(() => {
+      fetchData();
+    },[]);
+
+    const fetchData = async () => {
+      
+    // const data = await 
+    // fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.226286647797902&lng=85.5106483027339&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
+
+
+    // Patna
+    const data = await 
+    fetch('https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.5940947&lng=85.1375645&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING');
+    const json = await data.json();
+
+    console.log(json);
+
+   setListOfRest(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+   setfilteredRest(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+  };
+
+    // NORMAL JS VARIABLE
+    // let listOfRest1 = [
+    //  {
+    //     info:{
+    //     "id": "304041",
+    //     "name": "Shagun Hotel",
+    //     "cloudinaryImageId": "by3uz0e7eszzzqlvmpmz",
+    //     "locality": "Garhpar",
+    //     "areaName": "Qamruddin Ganj",
+    //     "costForTwo": "₹300 for two",
+    //     "cuisines": [
+    //       "Sweets",
+    //       "Bakery",
+    //       "Desserts",
+    //       "Snacks",
+    //       "Indian",
+    //       "South Indian"
+    //     ],
+    //     "avgRating": 3.5,
+    //     "veg": true,
+    //     "parentId": "182632",
+    //     "avgRatingString": "3.5",
+    //     "totalRatingsString": "4.5K+"
+    //     }
+    //  },
+    //  {
+    //     info:{
+    //         "id": "304042",
+    //         "name": "Sheetal Chhaya",
+    //         "cloudinaryImageId": "by3uz0e7eszzzqlvmpmz",
+    //         "locality": "Garhpar",
+    //         "areaName": "Qamruddin Ganj",
+    //         "costForTwo": "₹300 for two",
+    //         "cuisines": [
+    //           "Sweets",
+    //           "Bakery",
+    //           "Desserts",
+    //           "Snacks",
+    //           "Indian",
+    //           "South Indian"
+    //         ],
+    //         "avgRating": 4.2,
+    //         "veg": true,
+    //         "parentId": "182632",
+    //         "avgRatingString": "4.2",
+    //         "totalRatingsString": "4.5K+"
+    //         },
+    //  }   
+    // ];
+
+    // In simple we can show loading before getting data from api
+    // if(listOfRest.length === 0)
+    // {
+    //   return <h1>Loading...</h1>
+    // }
+
+    // New Way to show the page loading is using shimmer UI
+
+    if(listOfRest.length === 0)
+    {
+      // return <Shimmer/>;
+        return (
+          <div className="shimmer-container">
+            {[...Array(8)].map((_, index) => ( // Renders 6 shimmer cards
+              <Shimmer key={index} />
+            ))}
+          </div>
+        );
+    }
+  
+    return (
+      <div className='body'>
+        <div className='search'>Search</div>
+        <div className="filter">
+          <div className="search">
+            <input type="text" className="search-box" 
+            value={searchText} onChange={(e) => {
+              setSearchText(e.target.value);
+            }}>
+            </input>
+            <button
+        onClick={() => {
+          const filteredData = listOfRest.filter((res) =>
+            res.info.name.toLowerCase().includes(searchText.toLowerCase())
+          );
+         // setListOfRest(filteredData); // Update only filtered list
+
+         setfilteredRest(filteredData);
+        }}
+      >
+        Search Restaurant
+      </button>
+            {/* <button 
+            onClick={() => {
+              // For filter the restaurant card using search Text and Update the UI
+
+             const filteredRest = listOfRest.filter((res) => {
+                res.info.name.includes(searchText);
+                console.log(res.info.name.includes(searchText));
+             console.log(res.info.name);
+             });
+
+              setListOfRest(filteredRest);
+              console.log(filteredRest);
+              console.log(searchText);
+              
+            }}>
+              Search Restaurant
+            </button> */}
+          </div>
+            <button className="filter-btn" onClick={() => {
+                // listOfRest = listOfRest.filter((res) => 
+                //     res.info.avgRating > 4.0
+                // );
+                const filteredList = listOfRest.filter(
+                (res) => res.info.avgRating > 4.0 );
+
+                setListOfRest(filteredList);
+                //setfilteredRest(filteredRest);
+
+                console.log(setListOfRest(filteredList));
+               //console.log(setfilteredRest(filteredRest));
+            }}>
+                Top Rated
+            </button>
+        </div>
+        <div className='res-container'>  
+          {
+            filteredRest.map((restaurant) => ( <RestaurantCard 
+              key={restaurant.info.id} restData = {restaurant}       
+              /> ))
+          }
+        </div>
+      </div>
+    )
+  }
+
+  export default Body;

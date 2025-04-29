@@ -20,4 +20,33 @@ WHEN WE START BUILDING PROJECT FROM SCRATCH:
 NEED TO DO - SHOULD BE LEARN JS FUNCTION RELATED TO ARRAY AND 
     SOME IMPORTANT TOPIC LIKE MAP, FILTER AND REDUCE.
 
+EP - 5 
+/*
+1. FILE STRUCTURE :
 
+2. TWO TYPES OF EXPORT/IMPORT:
+
+A. 
+DEFAULT EXPORT VARIABLE/COMPONENT:
+EX:- export default Header;
+
+DEFAULT IMPORT VARIABLE/COMPONENT:
+EX:- import VARIABLE/COMPONENT from "Path".
+
+B. 
+EXPORT NAMED VARIABLE/COMPONENT:
+EX:- 
+export const LOGO_URL = "https://img.freepik.com/premium-vector/good-food-logo-design_79169-10.jpg";
+
+export const CDN_URL = 'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/';
+
+IMPORT NAMED VARIABLE/COMPONENT:
+EX:-
+import {VARIABLE/COMPONENT} from "Path".
+*/
+
+// REACT HOOKS
+(Normal JS Utility Funtion)
+
+useState()
+useEffect()
