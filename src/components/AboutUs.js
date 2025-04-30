@@ -133,7 +133,7 @@
 // export default AboutUs;
 
 import React from "react";
-import User from './User';
+// import User from './User';
 import UserCls from "./UserCls";
 
 class AboutUs extends React.Component {
